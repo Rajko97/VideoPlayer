@@ -16,3 +16,5 @@ dependencyResolutionManagement {
 rootProject.name = "Video Player"
 include(":app-databinding")
 include(":app-compose")
+include(":core:data")
+include(":core:domain")
