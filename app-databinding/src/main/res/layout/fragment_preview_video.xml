@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="tv.brid.videos.features.single.PreviewVideoViewModel" />
@@ -14,9 +15,9 @@
         tools:context=".features.single.PreviewVideoFragment">
 
         <TextView
+            android:id="@+id/txt_test"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello" />
+            android:layout_height="match_parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

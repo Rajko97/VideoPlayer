@@ -7,9 +7,17 @@
     <fragment
         android:id="@+id/videoListFragment"
         android:name="tv.brid.videos.features.list.VideoListFragment"
-        android:label="VideoListFragment" />
+        android:label="VideoListFragment" >
+        <action
+            android:id="@+id/action_videoListFragment_to_previewVideoFragment"
+            app:destination="@id/previewVideoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/previewVideoFragment"
         android:name="tv.brid.videos.features.single.PreviewVideoFragment"
-        android:label="PreviewVideoFragment" />
+        android:label="PreviewVideoFragment" >
+        <argument
+            android:name="videoId"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -1,6 +1,7 @@
 package tv.brid.videos.features.list
 
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -8,18 +9,20 @@ import kotlinx.coroutines.launch
 import tv.brid.videos.R
 import tv.brid.videos.base.BaseFragment
 import tv.brid.videos.databinding.FragmentVideoListBinding
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class VideoListFragment : BaseFragment<FragmentVideoListBinding, VideoListViewModel>() {
 
-    private lateinit var pagingAdapter: VideosAdapter
+    @Inject
+    lateinit var pagingAdapter: VideosPagingDataAdapter
 
     override fun provideLayoutId(): Int = R.layout.fragment_video_list
 
     override fun provideViewModelClass() = VideoListViewModel::class.java
 
     override fun setupUi() {
-        pagingAdapter = VideosAdapter(VideosAdapter.Companion.VideoComparator)
+        pagingAdapter.onItemClicked = { this@VideoListFragment.onItemClicked(it) }
 
         binding.recyclerVideos.apply {
             layoutManager = GridLayoutManager(context, 2)
@@ -33,5 +36,13 @@ class VideoListFragment : BaseFragment<FragmentVideoListBinding, VideoListViewMo
                 pagingAdapter.submitData(pagingData)
             }
         }
+    }
+
+    private fun onItemClicked(itemId: String) {
+        findNavController().navigate(
+            VideoListFragmentDirections.actionVideoListFragmentToPreviewVideoFragment(
+                videoId = itemId
+            )
+        )
     }
 }
