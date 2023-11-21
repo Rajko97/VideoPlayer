@@ -2,14 +2,14 @@
 <resources>
 
     <style name="Widget.CardViewStyle" parent="@style/Widget.MaterialComponents.CardView">
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.CardCustomCorners</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut</item>
     </style>
 
-    <style name="ShapeAppearanceOverlay.CardCustomCorners" parent="">
+    <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">0dp</item>
-        <item name="cornerSizeTopLeft">64dp</item>
+        <item name="cornerSizeTopLeft">16dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
-        <item name="cornerSizeBottomLeft">64dp</item>
+        <item name="cornerSizeBottomLeft">16dp</item>
     </style>
 </resources>
