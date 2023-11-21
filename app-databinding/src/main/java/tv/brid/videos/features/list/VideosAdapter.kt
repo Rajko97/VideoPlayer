@@ -1,4 +1,4 @@
-package tv.brid.videos
+package tv.brid.videos.features.list
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import tv.brid.domain.models.VideoData
+import tv.brid.videos.R
 
 class VideosAdapter(diffCallback: DiffUtil.ItemCallback<VideoData>) :
     PagingDataAdapter<VideoData, VideosAdapter.VideoViewHolder>(diffCallback) {

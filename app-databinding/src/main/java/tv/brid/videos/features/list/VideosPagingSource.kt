@@ -1,4 +1,4 @@
-package tv.brid.videos
+package tv.brid.videos.features.list
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
