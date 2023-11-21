@@ -28,7 +28,9 @@ class VideosAdapter(diffCallback: DiffUtil.ItemCallback<VideoData>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
-        return VideoViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_video, parent, false))
+        return VideoViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_video, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
@@ -38,9 +40,9 @@ class VideosAdapter(diffCallback: DiffUtil.ItemCallback<VideoData>) :
         holder.bind(item)
     }
 
-    inner class VideoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val title = itemView.findViewById<TextView>(R.id.txt_title)
-        val thumbnail = itemView.findViewById<ImageView>(R.id.img_thumbnail)
+    inner class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val title = itemView.findViewById<TextView>(R.id.txt_title)
+        private val thumbnail = itemView.findViewById<ImageView>(R.id.img_thumbnail)
 
         fun bind(data: VideoData?) {
             title.text = data?.title

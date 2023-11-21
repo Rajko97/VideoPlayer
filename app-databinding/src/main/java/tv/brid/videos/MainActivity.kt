@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.LinearLayoutCompat.OrientationMode
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -28,12 +29,12 @@ class MainActivity : AppCompatActivity() {
         pagingAdapter = VideosAdapter(VideosAdapter.Companion.VideoComparator)
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_videos)
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = GridLayoutManager(this, 2)
         recyclerView.adapter = pagingAdapter
         recyclerView.setHasFixedSize(false)
 
-// Activities can use lifecycleScope directly; fragments use
-// viewLifecycleOwner.lifecycleScope.
+        // Activities can use lifecycleScope directly; fragments use
+        // viewLifecycleOwner.lifecycleScope.
         lifecycleScope.launch {
             viewModel.flow.collectLatest { pagingData ->
                 pagingAdapter.submitData(pagingData)
