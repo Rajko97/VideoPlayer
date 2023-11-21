@@ -10,6 +10,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 import tv.brid.videos.BR
 
 abstract class BaseFragment<BindingT : ViewDataBinding, ViewModelT : ViewModel> : Fragment() {
