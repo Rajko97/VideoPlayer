@@ -11,6 +11,7 @@ interface YoutubeApi {
     suspend fun getVideos(
         @Query("key") apiKey: String = YoutubeService.API_KEY,
         @Query("maxResults") maxResults: Int = 20,
+        @Query("pageToken") pageToken: String? = null,
         @Query("type") type: String = "video",
         @Query("part") part: String = "snippet"
     ): SearchResponseRaw

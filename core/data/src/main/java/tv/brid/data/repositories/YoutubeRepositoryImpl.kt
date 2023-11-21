@@ -9,5 +9,8 @@ class YoutubeRepositoryImpl @Inject constructor(
     private val youtubeApi: YoutubeApi
 ) : VideosRepository {
 
-    override suspend fun getVideos() = youtubeApi.getVideos().toSearchResponse()
+    override suspend fun getVideos(pageToken: String?) =
+        youtubeApi.getVideos(
+            pageToken = pageToken
+        ).toSearchResponse()
 }

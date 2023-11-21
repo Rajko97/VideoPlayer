@@ -6,10 +6,10 @@ import tv.brid.domain.models.VideoData
 
 data class SearchResponseRaw(
     @SerializedName("nextPageToken")
-    val nextPageToken: String?,
+    val nextPageToken: String? = null,
     @SerializedName("prevPageToken")
-    val prevPageToken: String?,
-    @SerializedName("snippet")
+    val prevPageToken: String? = null,
+    @SerializedName("items")
     val data: List<VideoDataRaw>
 )
 
