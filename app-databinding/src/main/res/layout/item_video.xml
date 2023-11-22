@@ -13,13 +13,13 @@
         style="@style/Widget.CardViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/padding_small"
         app:contentPadding="-16dp"
         android:onClick="@{() -> vm.onItemClicked()}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="@dimen/card_height">
 
             <ImageView
                 android:id="@+id/img_thumbnail"
@@ -39,7 +39,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@{vm.item.title}"
-                android:paddingHorizontal="8dp"
+                android:paddingHorizontal="@dimen/padding_small"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="Sample Title" />
