@@ -2,7 +2,6 @@ package tv.brid.data.network.entities
 
 import com.google.gson.annotations.SerializedName
 import tv.brid.domain.models.SearchResponse
-import tv.brid.domain.models.VideoData
 
 data class SearchResponseRaw(
     @SerializedName("nextPageToken")
@@ -10,17 +9,12 @@ data class SearchResponseRaw(
     @SerializedName("prevPageToken")
     val prevPageToken: String? = null,
     @SerializedName("items")
-    val data: List<VideoDataRaw>
+    val data: List<VideoRaw>
 )
 
 fun SearchResponseRaw.toSearchResponse() =
     SearchResponse(
         nextPageToken = nextPageToken,
         prevPageToken = prevPageToken,
-        data = data.map {
-            VideoData(
-                title = it.snippet.title,
-                thumbnail = it.snippet.thumbnails.thumbnail.url
-            )
-        }
+        data = data.map { it.toVideo() }
     )

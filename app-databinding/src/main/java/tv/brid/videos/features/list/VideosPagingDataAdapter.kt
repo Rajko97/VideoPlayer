@@ -1,13 +1,13 @@
 package tv.brid.videos.features.list
 
 import androidx.recyclerview.widget.DiffUtil
-import tv.brid.domain.models.VideoData
 import tv.brid.videos.R
 import tv.brid.videos.base.BasePagingDataAdapter
+import tv.brid.videos.features.VideoView
 import javax.inject.Inject
 
 class VideosPagingDataAdapter @Inject constructor() :
-    BasePagingDataAdapter<VideoData>(VideoComparator) {
+    BasePagingDataAdapter<VideoView>(VideoComparator) {
 
     lateinit var onItemClicked: (String) -> Unit
 
@@ -17,13 +17,14 @@ class VideosPagingDataAdapter @Inject constructor() :
         VideoListItemViewModel(getItem(position)!!, onItemClicked)
 
     companion object {
-        object VideoComparator : DiffUtil.ItemCallback<VideoData>() {
-            override fun areItemsTheSame(oldItem: VideoData, newItem: VideoData): Boolean {
-                return oldItem.title == newItem.title
+        object VideoComparator : DiffUtil.ItemCallback<VideoView>() {
+            override fun areItemsTheSame(oldItem: VideoView, newItem: VideoView): Boolean {
+                return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: VideoData, newItem: VideoData): Boolean {
-                return oldItem.thumbnail == newItem.thumbnail
+            override fun areContentsTheSame(oldItem: VideoView, newItem: VideoView): Boolean {
+                return oldItem.title == newItem.title && oldItem.description == newItem.description &&
+                        oldItem.thumbnailUrl == newItem.thumbnailUrl && oldItem.sourceUrl == newItem.sourceUrl
             }
         }
     }

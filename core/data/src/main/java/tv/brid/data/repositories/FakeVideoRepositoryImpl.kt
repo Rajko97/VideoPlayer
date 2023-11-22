@@ -2,62 +2,75 @@ package tv.brid.data.repositories
 
 import tv.brid.domain.VideosRepository
 import tv.brid.domain.models.SearchResponse
-import tv.brid.domain.models.VideoData
+import tv.brid.domain.models.Video
 import javax.inject.Inject
 
 class FakeVideoRepositoryImpl @Inject constructor(
 
 ) : VideosRepository {
 
-    private val fakeDataSource = listOf<SearchResponse>(
-        SearchResponse("1", null, listOf(
-            VideoData("Title 1", "https://www.kasandbox.org/programming-images/avatars/spunky-sam.png"),
-            VideoData("Title 2", "https://www.kasandbox.org/programming-images/avatars/purple-pi.png"),
-            VideoData("Title 3", "https://www.kasandbox.org/programming-images/avatars/purple-pi-teal.png"),
-            VideoData("Title 4", "https://www.kasandbox.org/programming-images/avatars/purple-pi-pink.png"),
-            VideoData("Title 5", "https://www.kasandbox.org/programming-images/avatars/primosaur-ultimate.png"),
-            VideoData("Title 6", "https://www.kasandbox.org/programming-images/avatars/primosaur-tree.png"),
-            VideoData("Title 7", "https://www.kasandbox.org/programming-images/avatars/primosaur-sapling.png"),
-            VideoData("Title 8", "https://www.kasandbox.org/programming-images/avatars/orange-juice-squid.png"),
-            VideoData("Title 9", "https://www.kasandbox.org/programming-images/avatars/old-spice-man.png"),
-            VideoData("Title 10", "https://www.kasandbox.org/programming-images/avatars/old-spice-man-blue.png")
-        )),
-        SearchResponse("2", "1", listOf(
-            VideoData("Title 11", "https://www.kasandbox.org/programming-images/avatars/spunky-sam.png"),
-            VideoData("Title 12", "https://www.kasandbox.org/programming-images/avatars/purple-pi.png"),
-            VideoData("Title 13", "https://www.kasandbox.org/programming-images/avatars/purple-pi-teal.png"),
-            VideoData("Title 14", "https://www.kasandbox.org/programming-images/avatars/purple-pi-pink.png"),
-            VideoData("Title 15", "https://www.kasandbox.org/programming-images/avatars/primosaur-ultimate.png"),
-            VideoData("Title 16", "https://www.kasandbox.org/programming-images/avatars/primosaur-tree.png"),
-            VideoData("Title 17", "https://www.kasandbox.org/programming-images/avatars/primosaur-sapling.png"),
-            VideoData("Title 18", "https://www.kasandbox.org/programming-images/avatars/orange-juice-squid.png"),
-            VideoData("Title 19", "https://www.kasandbox.org/programming-images/avatars/old-spice-man.png"),
-            VideoData("Title 20", "https://www.kasandbox.org/programming-images/avatars/old-spice-man-blue.png")
-        )),
-        SearchResponse(null, "2", listOf(
-            VideoData("Title 21", "https://www.kasandbox.org/programming-images/avatars/spunky-sam.png"),
-            VideoData("Title 22", "https://www.kasandbox.org/programming-images/avatars/purple-pi.png"),
-            VideoData("Title 23", "https://www.kasandbox.org/programming-images/avatars/purple-pi-teal.png"),
-            VideoData("Title 24", "https://www.kasandbox.org/programming-images/avatars/purple-pi-pink.png"),
-            VideoData("Title 25", "https://www.kasandbox.org/programming-images/avatars/primosaur-ultimate.png"),
-            VideoData("Title 26", "https://www.kasandbox.org/programming-images/avatars/primosaur-tree.png"),
-            VideoData("Title 27", "https://www.kasandbox.org/programming-images/avatars/primosaur-sapling.png"),
-            VideoData("Title 28", "https://www.kasandbox.org/programming-images/avatars/orange-juice-squid.png"),
-            VideoData("Title 29", "https://www.kasandbox.org/programming-images/avatars/old-spice-man.png"),
-            VideoData("Title 30", "https://www.kasandbox.org/programming-images/avatars/old-spice-man-blue.png")
-        ))
+    private val listOfImages = listOf(
+        "https://www.kasandbox.org/programming-images/avatars/spunky-sam.png",
+        "https://www.kasandbox.org/programming-images/avatars/purple-pi.png",
+        "https://www.kasandbox.org/programming-images/avatars/purple-pi-teal.png",
+        "https://www.kasandbox.org/programming-images/avatars/purple-pi-pink.png",
+        "https://www.kasandbox.org/programming-images/avatars/primosaur-ultimate.png",
+        "https://www.kasandbox.org/programming-images/avatars/primosaur-tree.png",
+        "https://www.kasandbox.org/programming-images/avatars/primosaur-sapling.png",
+        "https://www.kasandbox.org/programming-images/avatars/orange-juice-squid.png",
+        "https://www.kasandbox.org/programming-images/avatars/old-spice-man.png",
+        "https://www.kasandbox.org/programming-images/avatars/old-spice-man-blue.png"
+    )
 
+    private val listOfVideos = listOf(
+        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
     )
 
     override suspend fun getVideos(pageToken: String?): SearchResponse {
-        return when(pageToken) {
-            "1" -> fakeDataSource[1]
-            "2" -> fakeDataSource[2]
-            else -> fakeDataSource[0]
+        val arrOfVideos = ArrayList<Video>()
+        var nextPageToken: String? = null
+        var prevPageToken: String? = null
+        var page: Int = 1
+
+        when (pageToken) {
+            "1" -> {
+                nextPageToken = "2"
+                page = 0
+            }
+
+            "2" -> {
+                prevPageToken = "1"
+                page = 1
+            }
+
+            else -> {
+                nextPageToken = "2"
+                page = 0
+            }
         }
+
+        for (i in 1 + page * 20..20 + page * 20) {
+            arrOfVideos.add(
+                Video(
+                    "Page$i",
+                    "Title $i",
+                    "Lorem Ipsum...",
+                    listOfImages.get(i % listOfImages.size),
+                    listOfVideos.get(i % listOfVideos.size)
+                )
+            )
+        }
+
+        return SearchResponse(nextPageToken, prevPageToken, arrOfVideos)
     }
 
-    override suspend fun getVideo(id: String): VideoData {
-        return fakeDataSource.flatMap { it.data }.find { it.title == id } ?: VideoData("Err", "")
+    override suspend fun getVideo(id: String): Video {
+        return listOf(getVideos("1"), getVideos("2")).flatMap { it.data }.find { it.title == id }
+            ?: Video("Err", "", "", "","")
     }
 }

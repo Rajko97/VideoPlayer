@@ -1,10 +1,10 @@
 package tv.brid.videos.features.list
 
 import androidx.lifecycle.ViewModel
-import tv.brid.domain.models.VideoData
+import tv.brid.videos.features.VideoView
 
 class VideoListItemViewModel(
-    val item: VideoData,
+    val item: VideoView,
     private val onItemClicked: (String) -> Unit
 ) : ViewModel() {
 
