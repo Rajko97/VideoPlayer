@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -19,7 +19,28 @@
             android:id="@+id/player_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_medium"
+            android:text="@{vm.videoLive.title}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            app:layout_constraintTop_toBottomOf="@id/player_view"
+            tools:text="Title for the video..." />
+
+        <TextView
+            android:id="@+id/txt_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_medium"
+            android:layout_marginTop="@dimen/padding_large"
+            android:text="@{vm.videoLive.description}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintTop_toBottomOf="@id/txt_title"
+            tools:text="Description for the video... " />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
