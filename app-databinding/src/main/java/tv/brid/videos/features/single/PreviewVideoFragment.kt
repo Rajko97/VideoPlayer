@@ -1,6 +1,8 @@
 package tv.brid.videos.features.single
 
+import androidx.annotation.OptIn
 import androidx.media3.common.MediaItem
+import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,9 +23,15 @@ class PreviewVideoFragment : BaseFragment<FragmentPreviewVideoBinding, PreviewVi
 
     override fun provideLayoutId() = R.layout.fragment_preview_video
 
+    @OptIn(UnstableApi::class)
     override fun setupUi() {
         viewModel.initVideo(args.videoId)
-        binding.playerView.player = exoMediaPlayer
+        binding.playerView.apply {
+            player = exoMediaPlayer
+            setShowFastForwardButton(false)
+            setShowRewindButton(false)
+            setShowPreviousButton(false)
+        }
     }
 
     override fun subscribeObservers() {

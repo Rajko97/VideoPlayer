@@ -17,6 +17,6 @@ interface DataModule {
 
     @Singleton
     @Binds
-    //fun bindVideosRepository(youtubeRepository: YoutubeRepositoryImpl): VideosRepository
+//    fun bindVideosRepository(youtubeRepository: YoutubeRepositoryImpl): VideosRepository
     fun bindVideosRepository(fakeVideosRepository: FakeVideoRepositoryImpl): VideosRepository
 }

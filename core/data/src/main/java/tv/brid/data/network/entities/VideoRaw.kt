@@ -5,24 +5,26 @@ import tv.brid.data.db.entities.VideoEntity
 import tv.brid.domain.models.Video
 
 data class VideoRaw(
+    @SerializedName("id")
+    val videoId: VideoIdRaw,
     @SerializedName("snippet")
     val snippet: SnippetRaw
 )
 
 fun VideoRaw.toVideoEntity() =
     VideoEntity(
-        id = snippet.title,
+        id = videoId.id,
         title = snippet.title,
-        desc = "",
+        desc = snippet.description,
         thumbnail = snippet.thumbnails.thumbnail.url,
         sourceUrl = ""
     )
 
 fun VideoRaw.toVideo() =
     Video(
-        id = snippet.title,
+        id = videoId.id,
         title = snippet.title,
-        description = "",
+        description = snippet.description,
         thumbnailUrl = snippet.thumbnails.thumbnail.url,
         sourceUrl = ""
     )
