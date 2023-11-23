@@ -4,45 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="tv.brid.videos.features.list.VideoListItemViewModel" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
-        style="@style/Widget.CardViewStyle"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_small"
-        app:contentPadding="-16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
         android:onClick="@{() -> vm.onItemClicked()}">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/img_thumbnail"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/card_height">
+            android:layout_height="wrap_content"
+            android:contentDescription="@{vm.item.title}"
+            android:setImageAsync="@{vm.item.thumbnailUrl}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.ShapeableImageView.CutLeftCorners"
+            tools:src="@mipmap/ic_launcher">
 
-            <ImageView
-                android:id="@+id/img_thumbnail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:setImageAsync="@{vm.item.thumbnailUrl}"
-                android:contentDescription="@{vm.item.title}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@mipmap/ic_launcher" />
+        </com.google.android.material.imageview.ShapeableImageView>
 
-            <TextView
-                android:id="@+id/txt_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_gradient_background"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@{vm.item.title}"
-                android:paddingHorizontal="@dimen/padding_small"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="Sample Title" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_gradient_background"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/padding_small"
+            android:text="@{vm.item.title}"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="Sample Title" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

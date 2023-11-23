@@ -10,37 +10,70 @@
             type="tv.brid.videos.features.single.PreviewVideoViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".features.single.PreviewVideoFragment">
 
-        <androidx.media3.ui.PlayerView
-            android:id="@+id/player_view"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:visibility="@{vm.isLoadingLive()}"
+            tools:visibility="gone">
 
-        <TextView
-            android:id="@+id/txt_title"
+            <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/padding_medium"
-            android:text="@{vm.videoLive.title}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:layout_constraintTop_toBottomOf="@id/player_view"
-            tools:text="Title for the video..." />
+            android:layout_height="match_parent"
+            android:visibility="@{vm.isErrorLive()}"
+            tools:visibility="gone">
 
-        <TextView
-            android:id="@+id/txt_desc"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/error" />
+        </RelativeLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/padding_medium"
-            android:layout_marginTop="@dimen/padding_large"
-            android:text="@{vm.videoLive.description}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            app:layout_constraintTop_toBottomOf="@id/txt_title"
-            tools:text="Description for the video... " />
+            android:layout_height="match_parent"
+            android:visibility="@{!vm.isLoadingLive() &amp;&amp; !vm.isErrorLive()}">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.media3.ui.PlayerView
+                android:id="@+id/player_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding_medium"
+                android:text="@{vm.videoLive.title}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                app:layout_constraintTop_toBottomOf="@id/player_view"
+                tools:text="Title for the video..." />
+
+            <TextView
+                android:id="@+id/txt_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/padding_medium"
+                android:layout_marginTop="@dimen/padding_large"
+                android:text="@{vm.videoLive.description}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                app:layout_constraintTop_toBottomOf="@id/txt_title"
+                tools:text="Description for the video... " />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
 </layout>

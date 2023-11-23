@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Video Player DataBinding</string>
+    <string name="error">Someting wrong happened!\nTry again later.</string>
 </resources>

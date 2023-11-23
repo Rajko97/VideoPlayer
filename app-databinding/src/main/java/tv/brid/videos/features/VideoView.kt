@@ -6,14 +6,12 @@ data class VideoView(
     val id: String = "",
     val title: String = "",
     val description: String = "",
-    val thumbnailUrl: String = "",
-    val sourceUrl: String = ""
+    val thumbnailUrl: String = ""
 )
 
 fun Video.toVideoView() = VideoView(
     id = id,
     title = title,
     description = description,
-    thumbnailUrl = thumbnailUrl,
-    sourceUrl = sourceUrl
+    thumbnailUrl = thumbnailUrl
 )

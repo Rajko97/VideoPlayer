@@ -23,8 +23,9 @@ class VideosPagingDataAdapter @Inject constructor() :
             }
 
             override fun areContentsTheSame(oldItem: VideoView, newItem: VideoView): Boolean {
-                return oldItem.title == newItem.title && oldItem.description == newItem.description &&
-                        oldItem.thumbnailUrl == newItem.thumbnailUrl && oldItem.sourceUrl == newItem.sourceUrl
+                return oldItem.title == newItem.title &&
+                        oldItem.description == newItem.description &&
+                        oldItem.thumbnailUrl == newItem.thumbnailUrl
             }
         }
     }
