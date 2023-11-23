@@ -22,7 +22,7 @@ class PreviewVideoViewModel @Inject constructor(
 
     fun initVideo(id: String) {
         viewModelScope.launch {
-            _videoLive.postValue(getVideoDetails.execute(id).toVideoView())
+            _videoLive.postValue(getVideoDetails.execute(id)?.toVideoView())
         }
     }
 }

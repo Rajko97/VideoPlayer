@@ -17,7 +17,6 @@ fun VideoRaw.toVideoEntity() =
         title = snippet.title,
         desc = snippet.description,
         thumbnail = snippet.thumbnails.thumbnail.url,
-        sourceUrl = ""
     )
 
 fun VideoRaw.toVideo() =
@@ -26,5 +25,5 @@ fun VideoRaw.toVideo() =
         title = snippet.title,
         description = snippet.description,
         thumbnailUrl = snippet.thumbnails.thumbnail.url,
-        sourceUrl = ""
+        sourceUrl = null
     )

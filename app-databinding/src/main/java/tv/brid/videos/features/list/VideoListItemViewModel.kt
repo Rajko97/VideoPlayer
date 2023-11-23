@@ -9,6 +9,6 @@ class VideoListItemViewModel(
 ) : ViewModel() {
 
     fun onItemClicked() {
-        onItemClicked.invoke(item.title)
+        onItemClicked.invoke(item.id)
     }
 }

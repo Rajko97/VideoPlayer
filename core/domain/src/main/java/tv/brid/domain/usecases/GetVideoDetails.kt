@@ -7,5 +7,5 @@ import javax.inject.Inject
 class GetVideoDetails @Inject constructor(
     private val videosRepository: VideosRepository
 ) {
-    suspend fun execute(id: String): Video = videosRepository.getVideo(id)
+    suspend fun execute(id: String): Video? = videosRepository.getVideo(id)
 }

@@ -15,9 +15,7 @@ data class VideoEntity(
     @ColumnInfo(name = COLUMN_DESC)
     val desc: String = "",
     @ColumnInfo(name = COLUMN_THUMBNAIL)
-    val thumbnail: String = "",
-    @ColumnInfo(name = COLUMN_SOURCE)
-    val sourceUrl: String = ""
+    val thumbnail: String = ""
 ) {
     companion object {
         const val TABLE_NAME = "videos"
@@ -25,7 +23,6 @@ data class VideoEntity(
         const val COLUMN_TITLE = "title"
         const val COLUMN_DESC = "desc"
         const val COLUMN_THUMBNAIL = "thumbnail"
-        const val COLUMN_SOURCE = "src"
     }
 }
 
@@ -35,5 +32,5 @@ fun VideoEntity.toVideoData() =
         title = title,
         description = desc,
         thumbnailUrl = thumbnail,
-        sourceUrl = sourceUrl
+        null
     )

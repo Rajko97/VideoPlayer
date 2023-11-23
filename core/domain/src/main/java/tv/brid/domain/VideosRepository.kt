@@ -7,5 +7,5 @@ interface VideosRepository {
 
     suspend fun getVideos(pageToken: String?): SearchResponse
 
-    suspend fun getVideo(id: String): Video
+    suspend fun getVideo(id: String): Video?
 }

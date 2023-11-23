@@ -9,6 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import tv.brid.videos.R
 import tv.brid.videos.base.BaseFragment
 import tv.brid.videos.databinding.FragmentPreviewVideoBinding
+import tv.brid.videos.features.VideoView
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -35,16 +36,17 @@ class PreviewVideoFragment : BaseFragment<FragmentPreviewVideoBinding, PreviewVi
     }
 
     override fun subscribeObservers() {
-        viewModel.videoLive.observe(this) {
-            val mediaItem = MediaItem.fromUri(it.sourceUrl)
-            exoMediaPlayer.setMediaItem(mediaItem)
-            exoMediaPlayer.prepare()
-            exoMediaPlayer.play()
-        }
+        viewModel.videoLive.observe(this) { onVideoRetrived(it) }
     }
 
-    override fun onStop() {
-        super.onStop()
+    private fun onVideoRetrived(video: VideoView) {
+        exoMediaPlayer.setMediaItem(MediaItem.fromUri(video.sourceUrl))
+        exoMediaPlayer.prepare()
+        exoMediaPlayer.play()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
         exoMediaPlayer.release()
     }
 }
