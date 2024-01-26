@@ -40,12 +40,11 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
 @Composable
 fun VideoPlayerApp(navigator: Navigator) {
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+        color = MaterialTheme.colorScheme.background,
     ) {
         val navController = rememberNavController()
 
@@ -60,13 +59,13 @@ fun VideoPlayerApp(navigator: Navigator) {
             }
         }
 
-        LaunchedEffect("navigation") {
+        LaunchedEffect(Unit) {
             navigator.sharedFlow.onEach { onNavigationAction(it) }.launchIn(this)
         }
 
         NavHost(
             navController = navController,
-            startDestination = MainNavGraph.startDestination
+            startDestination = MainNavGraph.startDestination,
         ) {
             addVideoListDestination()
             addVideoPreviewDestination()
